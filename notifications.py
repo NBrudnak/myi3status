@@ -11,7 +11,7 @@ def notify():
     imap.select("INBOX")
     typ, inbox = imap.search(None, 'All')
     notify = inbox[0].split()
-    print(notify[len(notify)-1])
+    print(len(notify))
 
 
 if __name__ == "__main__":
