@@ -1,0 +1,5 @@
+- laptop version status bar stops working onece laptop lid is closed and needs to
+be manually restarted to start working again.
+
+- volume display updates really slowly after changing the volume. I dont know
+  why this is.  

@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 bg_bar_color="#ffffff"
-NOT=1
 
 
 # Send the header so that i3bar knows we want to use JSON:
@@ -18,13 +17,16 @@ echo '[]'
 do
   echo -n ",["
 
+
   #notifications
   echo -n "{\"name\":\"id_notifications\",\"background\":\"#a832a8\",\"full_text\":\"$(/home/merl/code/i3-status-custom/notifications.py)\"},"
+  #volume display
+  echo -n "{\"name\":\"id_time\",\"background\":\"#a832a8\",\"full_text\":\"$(/home/merl/code/i3-status-custom/volume.sh)\"},"
   #cpu display
   echo -n "{\"name\":\"id_cpu\",\"background\":\"#1ebd2e\",\"full_text\":\"$(/home/merl/code/i3-status-custom/cpu.py)%\"},"
   #date and time
 	echo -n "{\"name\":\"id_time\",\"background\":\"#a832a8\",\"full_text\":\"$(date)\"}"
-
+  
   echo -n "]"
 	sleep 1
 done) &
