@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import imaplib
 import email
-
+import sys
 
 def login():
     while True:
@@ -48,7 +48,7 @@ def emailSelect(correctList, imap):
     while(True):
         command = input("\n==================\n\nenter email to view: ").split()
         if command[0] == "v":
-            typ, inbox = imap.fetch(correctList[int(command[1])], '(RFC822)')
+            typ, inbox = imap.fetch(correctList[int(command[1])-1], '(RFC822)')
             try:
                 msg = email.message_from_string(inbox[0][1].decode('utf-8'))
                 for m in msg.walk():

@@ -19,13 +19,13 @@ do
 
 
   #notifications
-  echo -n "{\"name\":\"id_notifications\",\"background\":\"#a832a8\",\"full_text\":\"$(/home/merl/code/i3-status-custom/notifications.py)\"},"
+  echo -n "{\"name\":\"id_notifications\",\"background\":\"#14524a\",\"full_text\":\"$(/home/merl/code/i3-status-custom/notifications.py)\"},"
   #volume display
-  echo -n "{\"name\":\"id_time\",\"background\":\"#a832a8\",\"full_text\":\"$(/home/merl/code/i3-status-custom/volume.sh)\"},"
+  echo -n "{\"name\":\"id_volume\",\"background\":\"#14524a\",\"full_text\":\"Vol: $(/home/merl/code/i3-status-custom/volume.sh)\"},"
   #cpu display
-  echo -n "{\"name\":\"id_cpu\",\"background\":\"#1ebd2e\",\"full_text\":\"$(/home/merl/code/i3-status-custom/cpu.py)%\"},"
+  echo -n "{\"name\":\"id_cpu\",\"background\":\"#14524a\",\"full_text\":\"$(/home/merl/code/i3-status-custom/cpu.py)%\"},"
   #date and time
-	echo -n "{\"name\":\"id_time\",\"background\":\"#a832a8\",\"full_text\":\"$(date)\"}"
+	echo -n "{\"name\":\"id_time\",\"background\":\"#14524a\",\"full_text\":\"$(date)\"}"
   
   echo -n "]"
 	sleep 1
@@ -38,6 +38,8 @@ while read line;
       alacritty -e /home/merl/code/i3-status-custom/mail.py &
     #click event: cpu -> htop view
     elif [[ $line == *"name"*"id_cpu"* ]]; then
-      alacritty -e htop
+      alacritty -e htop &
+    elif [[ $line == *"name"*"id_volume"* ]]; then
+      alacritty -e alsamixer
     fi
   done
