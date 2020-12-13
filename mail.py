@@ -2,6 +2,7 @@
 import imaplib
 import email
 import sys
+import os
 
 def login():
     while True:
@@ -58,15 +59,28 @@ def emailSelect(correctList, imap):
 
             except:
                 print("unable to print email ===============================")
-        
 
+def notify():
+    imap = imaplib.IMAP4_SSL("outlook.office365.com")
+    imap.login("nbrudnak@uwm.edu","Cccl@b2001!NEIL")
+    imap.select("INBOX")
+    typ, inbox = imap.search(None, 'All')
+    notify = inbox[0].split()
+    return (len(notify))
 
 if __name__ == "__main__":
-    imap = login()
-    correctList = mailboxSelector(imap, 10)
-    listMessages(correctList, imap)
-    emailSelect(correctList, imap)
+    
+    if len(sys.argv) == 1:
+        cur = notify()
+        print(cur)
 
+    elif sys.argv[1]=='v':
+        cur = notify()
+        os.system("sed -i 's/^unchecked=.*$/unchecked="+str(cur)+"/' ~/code/i3-status-custom/notifications.sh")
+        imap = login()
+        correctList = mailboxSelector(imap, 10)
+        listMessages(correctList, imap)
+        emailSelect(correctList, imap)
 
 
 

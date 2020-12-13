@@ -19,7 +19,7 @@ do
 
 
   #notifications
-  echo -n "{\"name\":\"id_notifications\",\"background\":\"#14524a\",\"full_text\":\"$(/home/merl/code/i3-status-custom/notifications.py)\"},"
+  echo -n "{\"name\":\"id_notifications\",\"background\":\"#14524a\",\"full_text\":\"$(/home/merl/code/i3-status-custom/notifications.sh)\"},"
   #volume display
   echo -n "{\"name\":\"id_volume\",\"background\":\"#14524a\",\"full_text\":\"Vol: $(/home/merl/code/i3-status-custom/volume.sh)\"},"
   #cpu display
@@ -35,7 +35,7 @@ while read line;
   do
     #click event: notification -> email view
     if [[ $line == *"name"*"id_notifications"* ]]; then
-      alacritty -e /home/merl/code/i3-status-custom/mail.py &
+      alacritty -e /home/merl/code/i3-status-custom/mail.py v &
     #click event: cpu -> htop view
     elif [[ $line == *"name"*"id_cpu"* ]]; then
       alacritty -e htop &
